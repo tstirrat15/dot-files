@@ -1,17 +1,3 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2015 Mar 24
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" Theoretically first thign:
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 filetype off                  " required
@@ -20,8 +6,8 @@ filetype off                  " required
 set backspace=indent,eol,start
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#begin('~/.nvim/bundle')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -43,6 +29,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'avakhov/vim-yaml' 
 Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
+Plugin 'guns/vim-clojure-static'
+Plugin 'Paredit.vim'
+Plugin 'tpope/vim-fireplace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
