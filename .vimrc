@@ -6,8 +6,8 @@ filetype off                  " required
 set backspace=indent,eol,start
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#begin('~/.nvim/bundle')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -29,6 +29,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'avakhov/vim-yaml' 
 Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
+Plugin 'guns/vim-clojure-static'
+Plugin 'Paredit.vim'
+Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
 
 " All of your Plugins must be added before the following line
