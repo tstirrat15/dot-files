@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/tstirrat/.oh-my-zsh
+  export ZSH=/home/tannerstirrat/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,7 +53,7 @@ plugins=(gitfast compleat common-aliases docker lol npm pip python)
 
 # User configuration
 
-  export PATH="/home/tstirrat/bin:/home/tstirrat/.nvm/versions/node/v5.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/tstirrat/bin"
+  export PATH="/home/tannerstirrat/gephi/bin:/opt/bro/bin:/home/tannerstirrat/bin:/home/tannerstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -79,9 +79,9 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# User-defined aliases
+# Example aliases
 eval "$(thefuck --alias)"
-alias update="sudo apt-get update && sudo apt-get dist-upgrade"
+alias update="sudo apt update && sudo apt dist-upgrade"
 
 # not to be confused with nvim
 alias nvmset="nvm use default"
@@ -89,7 +89,7 @@ alias nvmset="nvm use default"
 # make vim redirect to nvim. bad idea? maybe.
 alias vim="nvim"
 
-export NVM_DIR="/home/tstirrat/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="/home/tannerstirrat/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 source /usr/local/bin/virtualenvwrapper.sh
