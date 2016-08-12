@@ -27,10 +27,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -84,7 +84,8 @@ eval "$(thefuck --alias)"
 alias update="sudo apt update && sudo apt dist-upgrade"
 
 # not to be confused with nvim
-alias nvmset="nvm use default"
+# Not currently in use
+# alias nvmset="nvm use default"
 
 #export NVM_DIR="/home/tannerstirrat/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

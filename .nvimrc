@@ -33,6 +33,11 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'Paredit.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+" Mediawiki docs
+Plugin 'chikamichi/mediawiki.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,3 +79,8 @@ let delimitMate_expand_cr = 1
 
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" XML Indent settings
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
