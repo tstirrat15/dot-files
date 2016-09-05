@@ -6,17 +6,16 @@ filetype off                  " required
 set backspace=indent,eol,start
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin('~/.nvim/bundle')
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " My plugins!
 Plugin 'leafgarland/typescript-vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe' "IDE-ish autocomplete
 Plugin 'Shougo/vimproc'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'tomasr/molokai'
@@ -29,10 +28,21 @@ Plugin 'mattn/emmet-vim'
 Plugin 'avakhov/vim-yaml' 
 Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
-Plugin 'guns/vim-clojure-static'
-Plugin 'Paredit.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'altercation/vim-colors-solarized'
+
+" Clojure Plugins
+Plugin 'Paredit.vim'
+Plugin 'guns/vim-clojure-static'
+
+" PHP plugins
+Plugin 'StanAngeloff/php.vim'
+Plugin 'rayburgemeestre/phpfolding.vim'
+Plugin 'nrocco/vim-phplint'
+
+"JS Plugins
+Plugin 'pangloss/vim-javascript'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -54,7 +64,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -64,7 +73,8 @@ if !exists(":DiffOrig")
 endif
 
 " Better highlighting. schweet.
-:color desert
+:set background=dark
+colorscheme solarized
 
 " for delimitMate
 let delimitMate_expand_cr = 1
@@ -74,3 +84,12 @@ let delimitMate_expand_cr = 1
 
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+"
+" Set php-specific tabbing
+autocmd FileType php setlocal shiftwidth=4 tabstop=4 noexpandtab
+
+" cd macro - makes it easier to nav.
+nnoremap ,cd :lcd %:p:h
+
+" Make diffs go vertical
+:set diffopt+=vertical
