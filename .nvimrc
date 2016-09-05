@@ -31,6 +31,7 @@ Plugin 'klen/python-mode'
 Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'godlygeek/tabular'
 
 " Clojure Plugins
 Plugin 'Paredit.vim'
@@ -84,7 +85,7 @@ let delimitMate_expand_cr = 1
 
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-"
+
 " Set php-specific tabbing
 autocmd FileType php setlocal shiftwidth=4 tabstop=4 noexpandtab
 

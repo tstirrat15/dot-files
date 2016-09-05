@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/tannerstirrat/.oh-my-zsh
+  export ZSH=/home/tstirrat/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -27,10 +27,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -53,7 +53,7 @@ plugins=(gitfast compleat docker docker-compose lol npm pip python)
 
 # User configuration
 
-  export PATH="/opt/bro/bin:/home/tannerstirrat/bin:/home/tannerstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/opt/bro/bin:/home/tannerstirrat/bin:/home/tannerstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -82,7 +82,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 eval "$(thefuck --alias)"
 alias update="sudo apt update && sudo apt dist-upgrade"
-
 
 
 #export NVM_DIR="/home/tannerstirrat/.nvm"
