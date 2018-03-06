@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/tannerstirrat/.oh-my-zsh
+export ZSH=/home/tstirrat/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,11 +49,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast compleat docker docker-compose lol npm pip python zsh-nvm)
+plugins=(git gitfast compleat docker docker-compose lol yarn pip python)
 
 # User configuration
 
-export PATH="/home/tannerstirrat/.local/bin:/opt/bro/bin:/home/tannerstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/tstirrat/.local/bin:/opt/bro/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+# Add bropages
+export PATH=$PATH:/home/tstirrat/.gem/ruby/2.3.0/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -71,13 +73,10 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 eval "$(thefuck --alias)"
 alias update="sudo apt update && sudo apt full-upgrade"
 
-# Add miniconda to path
-alias useconda="export PATH=\"/home/tannerstirrat/miniconda3/bin:$PATH\""
+# Get virtualenvwrapper working
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /home/tstirrat/.local/bin/virtualenvwrapper.sh
 
-# android things
-export ANDROID_HOME="/home/tannerstirrat/android"
-
-source /usr/local/bin/virtualenvwrapper.sh
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 alias manage.py='docker-compose exec django ./manage.py'
@@ -89,16 +88,5 @@ alias django='docker-compose exec django'
 alias react='docker-compose exec react'
 alias ci='docker-compose exec codeigniter'
 alias dmysql='docker-compose exec mysql mysql -proot'
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/tannerstirrat/.sdkman"
-[[ -s "/home/tannerstirrat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/tannerstirrat/.sdkman/bin/sdkman-init.sh"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:$(yarn global bin)
