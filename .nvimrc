@@ -103,9 +103,6 @@ let delimitMate_expand_cr = 1
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" Set language-specific tabbing
-autocmd FileType php setlocal shiftwidth=4 tabstop=4 noexpandtab
-
 " Set javascript folding
 autocmd FileType javascript setlocal foldmethod=syntax
 
@@ -135,7 +132,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " Get yavascript linting working
-let g:syntastic_javascript_eslint_exe = '$(yarn bin)/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Disable 'safe write' - makes things like Webpack HMR work
