@@ -25,14 +25,17 @@ Plugin 'mattn/emmet-vim'
 Plugin 'stephpy/vim-yaml' 
 Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'chriskempson/base16-vim'
+Plugin 'chriskempson/base16-vim' " For pretty colors
 Plugin 'godlygeek/tabular'
-Plugin 'editorconfig/editorconfig-vim'
+Plugin 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
 Plugin 'splitjoin.vim' "Moves between single and multiline code quickly
+Plugin 'zimbatm/haproxy.vim' "HAProxy syntax highlighting
 
 " Python plugins
 Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'nvie/vim-flake8'
+Plugin 'Vimjas/vim-python-pep8-indent' "Better indentation. The default is annoying.
 
 " Syntax checking
 Plugin 'vim-syntastic/syntastic'
@@ -119,6 +122,9 @@ nnoremap ,cd :lcd %:p:h
 let g:pymode_python = 'python3'
 let g:python3_host_prog = '/usr/bin/python3'
 
+" Turn off line length errors on python files
+let g:syntastic_python_checkers = ['flake8']
+
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
@@ -127,12 +133,26 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" Set up netrw to suck less
+" Found this here: https://shapeshed.com/vim-netrw/
+let g:netrw_liststyle = 3 " go to tree mode first
+let g:netrw_banner = 0 " banners are stupid
+let g:netrw_browse_split = 3 " default to opening in new tab rather than same window
+
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " Get yavascript linting working
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_scss_checkers = ['stylelint']
 
 " Disable 'safe write' - makes things like Webpack HMR work
 set backupcopy=yes
+
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+" This fixes the annoying error where you can't :qa out of a bunch of open
+" files because it keeps throwing "netrwsomething modified errors
+autocmd FileType netrw setl bufhidden=delete
