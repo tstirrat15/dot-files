@@ -30,6 +30,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
 Plugin 'splitjoin.vim' "Moves between single and multiline code quickly
 Plugin 'zimbatm/haproxy.vim' "HAProxy syntax highlighting
+Plugin 'keith/swift.vim' "Swift (ios) highlighting
 
 " Python plugins
 Plugin 'davidhalter/jedi-vim'
@@ -57,6 +58,9 @@ Plugin 'nrocco/vim-phplint'
 "JS Plugins
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+"TS Plugins (JS's cousin)
+Plugin 'leafgarland/typescript-vim'
 
 " Haskell plugins
 Plugin 'eagletmt/ghcmod-vim'
@@ -117,10 +121,6 @@ nnoremap ,cd :lcd %:p:h
 
 " Make diffs go vertical
 :set diffopt+=vertical
-
-" Set python-mode python version
-let g:pymode_python = 'python3'
-let g:python3_host_prog = '/usr/bin/python3'
 
 " Turn off line length errors on python files
 let g:syntastic_python_checkers = ['flake8']
