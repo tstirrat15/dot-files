@@ -49,11 +49,11 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd)
+plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl)
 
 # User configuration
 
-export PATH="/home/tstirrat/.local/bin:/opt/bro/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/tstirrat/.local/bin:/snap/bin:/opt/bro/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # Add bropages
 export PATH=$PATH:/home/tstirrat/.gem/ruby/2.5.0/bin
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -89,5 +89,7 @@ alias react='docker-compose exec react'
 alias ci='docker-compose exec codeigniter'
 alias dmysql='docker-compose exec mysql mysql -proot'
 alias dcil='docker-compose exec codeigniter tail -f /proc/1/fd/2'
+alias djbr='dce django apk --no-cache add python3-dev mariadb-dev build-base gcc git'
 
 export PATH=$PATH:$(yarn global bin)
+export PATH=$PATH:/home/tstirrat/go/bin
