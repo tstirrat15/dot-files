@@ -53,9 +53,9 @@ plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd k
 
 # User configuration
 
-export PATH="/home/tstirrat/.local/bin:/snap/bin:/opt/bro/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/tstirrat/.local/bin:/snap/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # Add bropages
-export PATH=$PATH:/home/tstirrat/.gem/ruby/2.5.0/bin
+export PATH=$PATH:/home/tstirrat/.gem/ruby/2.7.0/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
