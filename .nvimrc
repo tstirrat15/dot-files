@@ -23,13 +23,11 @@ Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'stephpy/vim-yaml' 
-Plugin 'tpope/vim-fireplace'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'chriskempson/base16-vim' " For pretty colors
 Plugin 'godlygeek/tabular'
 Plugin 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
 Plugin 'splitjoin.vim' "Moves between single and multiline code quickly
-Plugin 'zimbatm/haproxy.vim' "HAProxy syntax highlighting
 Plugin 'keith/swift.vim' "Swift (ios) highlighting
 
 " Python plugins
@@ -45,10 +43,6 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 
-" Clojure Plugins
-Plugin 'Paredit.vim'
-Plugin 'guns/vim-clojure-static'
-
 " PHP plugins
 Plugin 'StanAngeloff/php.vim'
 Plugin 'shawncplus/phpcomplete.vim'
@@ -57,14 +51,19 @@ Plugin 'nrocco/vim-phplint'
 
 "JS Plugins
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'maxmellon/vim-jsx-pretty'
 
-"TS Plugins (JS's cousin)
+" TS Plugins
 Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'Quramy/tsuquyomi'
 
 " Haskell plugins
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
+
+" Kotlin
+Plugin 'udalov/kotlin-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -110,8 +109,8 @@ let delimitMate_expand_cr = 1
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" Set javascript folding
-autocmd FileType javascript setlocal foldmethod=syntax
+" Set javascript folding and make its indentation less sucky
+autocmd FileType javascript setlocal foldmethod=syntax shiftwidth=2
 
 " Set JSX highlighting to be used in js files
 let g:jsx_ext_required = 0
@@ -150,6 +149,9 @@ let g:syntastic_scss_checkers = ['stylelint']
 
 " Disable 'safe write' - makes things like Webpack HMR work
 set backupcopy=yes
+
+" Make jedi open definition jump in new tab
+let g:jedi#use_tabs_not_buffers = 1
 
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
