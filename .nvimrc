@@ -5,68 +5,68 @@ filetype off                  " required
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" Tell ALE to chill and let coc do its thing
+let g:ale_disable_lsp = 1
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle') " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin(stdpath('data') . '/plugged') " alternatively, pass a path where Vundle should install plugins
 
 " My plugins!
-Plugin 'Valloric/YouCompleteMe' "IDE-ish autocomplete
-Plugin 'Shougo/vimproc'
-Plugin 'tomasr/molokai'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mattn/emmet-vim'
-Plugin 'stephpy/vim-yaml' 
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'chriskempson/base16-vim' " For pretty colors
-Plugin 'godlygeek/tabular'
-Plugin 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
-Plugin 'splitjoin.vim' "Moves between single and multiline code quickly
-Plugin 'keith/swift.vim' "Swift (ios) highlighting
+Plug 'Shougo/vimproc'
+Plug 'tomasr/molokai'
+Plug 'Raimondi/delimitMate'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mattn/emmet-vim'
+Plug 'stephpy/vim-yaml' 
+Plug 'Chiel92/vim-autoformat'
+Plug 'chriskempson/base16-vim' " For pretty colors
+Plug 'godlygeek/tabular'
+Plug 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
+Plug 'vim-scripts/splitjoin.vim' "Moves between single and multiline code quickly
+Plug 'keith/swift.vim', { 'for': 'swift' } "Swift (ios) highlighting
+Plug 'chr4/nginx.vim'
+
+" coc and friends
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "IDE-ish autocomplete
+
+" Provides the bit at the bottom
+Plug 'vim-airline/vim-airline'
 
 " Python plugins
-Plugin 'davidhalter/jedi-vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'nvie/vim-flake8'
-Plugin 'Vimjas/vim-python-pep8-indent' "Better indentation. The default is annoying.
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' } "Better indentation. The default is annoying.
 
 " Syntax checking
-Plugin 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " PHP plugins
-Plugin 'StanAngeloff/php.vim'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'rayburgemeestre/phpfolding.vim'
-Plugin 'nrocco/vim-phplint'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'rayburgemeestre/phpfolding.vim', { 'for': 'php' }
+Plug 'nrocco/vim-phplint', { 'for': 'php' }
 
 "JS Plugins
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascriptreact'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascriptreact'] }
 
 " TS Plugins
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
+Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
+Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
 
 " Haskell plugins
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
-
-" Kotlin
-Plugin 'udalov/kotlin-vim'
+" Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/neco-ghc'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -83,14 +83,6 @@ inoremap <C-U> <C-G>u<C-U>
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-endif
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
 endif
 
 " Better highlighting. schweet.
@@ -115,22 +107,17 @@ autocmd FileType javascript setlocal foldmethod=syntax shiftwidth=2
 " Set JSX highlighting to be used in js files
 let g:jsx_ext_required = 0
 
+" Set up airline to talk to ale
+let g:airline#extensions#ale#enabled = 1
+
 " cd macro - makes it easier to nav.
 nnoremap ,cd :lcd %:p:h
 
 " Make diffs go vertical
 :set diffopt+=vertical
 
-" Turn off line length errors on python files
-let g:syntastic_python_checkers = ['flake8']
-
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-
-"Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 " Set up netrw to suck less
 " Found this here: https://shapeshed.com/vim-netrw/
@@ -138,20 +125,11 @@ let g:netrw_liststyle = 3 " go to tree mode first
 let g:netrw_banner = 0 " banners are stupid
 let g:netrw_browse_split = 3 " default to opening in new tab rather than same window
 
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Get yavascript linting working
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_scss_checkers = ['stylelint']
-
 " Disable 'safe write' - makes things like Webpack HMR work
 set backupcopy=yes
 
-" Make jedi open definition jump in new tab
-let g:jedi#use_tabs_not_buffers = 1
+" coc-related settings
+nmap <silent> gd <Plug>(coc-definition)
 
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
