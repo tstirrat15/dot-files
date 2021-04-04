@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl)
+plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl virtualenv)
 
 # User configuration
 
@@ -79,17 +79,18 @@ source /home/tstirrat/.local/bin/virtualenvwrapper.sh
 
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
-alias manage.py='docker-compose exec django ./manage.py'
-alias dyarn='docker-compose exec react yarn'
-alias latest-master='git checkout master && git pull origin master'
-alias all-master='cd ~/getmyboat/development; latest-master; cd getmyboat-django; latest-master; cd ../react-universal; latest-master; cd ../getmyboat; latest-master;'
-alias djatest='docker-compose exec django env DJANGO_SETTINGS_MODULE=getmyboat.settings.testing pytest --reuse-db'
-alias django='docker-compose exec django'
-alias react='docker-compose exec react'
-alias ci='docker-compose exec codeigniter'
-alias dmysql='docker-compose exec mysql mysql -proot'
-alias dcil='docker-compose exec codeigniter tail -f /proc/1/fd/2'
+alias manage.py='docker-compose exec runserver ./manage.py'
+alias djatest='docker-compose exec runserver ./manage.py test --keepdb'
+alias djdr='docker-compose exec runserver pip install -r requirements-dev.txt -r test_requirements.txt'
+alias django='docker-compose exec runserver'
+alias dsql='docker-compose exec postgres psql -U postgres -d omnidev'
 alias djbr='dce django apk --no-cache add python3-dev mariadb-dev build-base gcc git'
 
 export PATH=$PATH:$(yarn global bin)
 export PATH=$PATH:/home/tstirrat/go/bin
+
+# Pyenv-specific things
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:$PYENV_ROOT/bin"
+# eval "$(pyenv init -)" # Overwrites your pythonpath with the installed one
+# eval "$(pyenv virtualenv-init -)" # Does the auto activation on directory enter
