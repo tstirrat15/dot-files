@@ -29,6 +29,9 @@ Plug 'vim-scripts/splitjoin.vim' "Moves between single and multiline code quickl
 Plug 'keith/swift.vim', { 'for': 'swift' } "Swift (ios) highlighting
 Plug 'chr4/nginx.vim'
 
+" Provides extra file commands
+Plug 'tpope/vim-eunuch'
+
 " coc and friends
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "IDE-ish autocomplete
 
@@ -37,7 +40,8 @@ Plug 'vim-airline/vim-airline'
 
 " Python plugins
 Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' } "Better indentation. The default is annoying.
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' } " Better indentation. The default is annoying.
+Plug 'psf/black', { 'branch': 'stable', 'for': 'python' } " Add black as a plugin so that we can run on save
 
 " Syntax checking
 Plug 'dense-analysis/ale'
@@ -60,6 +64,9 @@ Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascriptreact'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
 Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
 Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescriptreact', 'typescriptcommon'] }
+
+" pegjs
+Plug 'alunny/pegjs-vim'
 
 " Haskell plugins
 " Plug 'eagletmt/ghcmod-vim'
@@ -104,11 +111,24 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Set javascript folding and make its indentation less sucky
 autocmd FileType javascript setlocal foldmethod=syntax shiftwidth=2
 
+" Set json folding as well
+autocmd FileType json setlocal foldmethod=syntax
+
 " Set JSX highlighting to be used in js files
 let g:jsx_ext_required = 0
 
 " Set up airline to talk to ale
 let g:airline#extensions#ale#enabled = 1
+
+""" ALE settings
+" This group of settings makes it look/behave like Syntastic did
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
+" Allow for jumping between ALE errors quickly
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " cd macro - makes it easier to nav.
 nnoremap ,cd :lcd %:p:h
@@ -136,3 +156,17 @@ nmap <silent> gd <Plug>(coc-definition)
 " This fixes the annoying error where you can't :qa out of a bunch of open
 " files because it keeps throwing "netrwsomething modified errors
 autocmd FileType netrw setl bufhidden=delete
+
+" Makes tab work for Coc autocompletion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
