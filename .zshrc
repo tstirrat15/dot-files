@@ -92,5 +92,6 @@ export PATH=$PATH:/home/tstirrat/go/bin
 # Pyenv-specific things
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$PYENV_ROOT/bin"
-# eval "$(pyenv init -)" # Overwrites your pythonpath with the installed one
-# eval "$(pyenv virtualenv-init -)" # Does the auto activation on directory enter
+
+# Unalias tldr so that we can use the yarn one
+unalias tldr
