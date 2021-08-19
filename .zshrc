@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/tstirrat/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,6 +54,7 @@ plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd k
 # User configuration
 
 export PATH="/home/tstirrat/.local/bin:/snap/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH=$PATH:$HOME/Library/Python/3.9/bin
 # Add bropages
 export PATH=$PATH:/home/tstirrat/.gem/ruby/2.7.0/bin
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -73,24 +74,32 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 eval "$(thefuck --alias)"
 alias update="sudo apt update && sudo apt full-upgrade"
 
+alias vim="nvim"
+
 # Get virtualenvwrapper working
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /home/tstirrat/.local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source $HOME/Library/Python/3.9/bin/virtualenvwrapper.sh
 
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 alias manage.py='docker-compose exec runserver ./manage.py'
-alias djatest='docker-compose exec runserver ./manage.py test --keepdb'
+alias djatest='docker-compose exec runserver pytest'
 alias djdr='docker-compose exec runserver pip install -r requirements-dev.txt -r test_requirements.txt'
 alias django='docker-compose exec runserver'
 alias dsql='docker-compose exec postgres psql -U postgres -d omnidev'
 alias djbr='dce django apk --no-cache add python3-dev mariadb-dev build-base gcc git'
 
+# Disable omz alias for this so that we can use tldr
+unalias tldr
+
 export PATH=$PATH:$(yarn global bin)
 export PATH=$PATH:/home/tstirrat/go/bin
 
-# Pyenv-specific things
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:$PYENV_ROOT/bin"
-# eval "$(pyenv init -)" # Overwrites your pythonpath with the installed one
-# eval "$(pyenv virtualenv-init -)" # Does the auto activation on directory enter
+# Make sure that pyenv is running
+eval "$(pyenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tannerstirrat/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tannerstirrat/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tannerstirrat/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tannerstirrat/google-cloud-sdk/completion.zsh.inc'; fi
