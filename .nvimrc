@@ -20,14 +20,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mattn/emmet-vim'
-Plug 'stephpy/vim-yaml' 
 Plug 'Chiel92/vim-autoformat'
 Plug 'chriskempson/base16-vim' " For pretty colors
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
 Plug 'vim-scripts/splitjoin.vim' "Moves between single and multiline code quickly
-Plug 'keith/swift.vim', { 'for': 'swift' } "Swift (ios) highlighting
-Plug 'chr4/nginx.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Highlighting and whatnot provided by treesitter
 
 " Provides extra file commands
 Plug 'tpope/vim-eunuch'
@@ -39,8 +37,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "IDE-ish autocomplete
 Plug 'vim-airline/vim-airline'
 
 " Python plugins
-Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' } " Better indentation. The default is annoying.
 Plug 'psf/black', { 'branch': 'stable', 'for': 'python' } " Add black as a plugin so that we can run on save
 
 " Syntax checking
@@ -51,9 +47,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 " PHP plugins
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
-Plug 'rayburgemeestre/phpfolding.vim', { 'for': 'php' }
 Plug 'nrocco/vim-phplint', { 'for': 'php' }
 
 "JS Plugins
@@ -168,5 +161,17 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Treesitter configuration
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },
+  indent = { enable = true },
+  incremental_selection = { enable = true },
+}
+EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 let g:coc_snippet_next = '<tab>'
