@@ -94,12 +94,3 @@ unalias tldr
 
 export PATH=$PATH:$(yarn global bin)
 export PATH=$PATH:/home/tstirrat/go/bin
-
-# Make sure that pyenv is running
-eval "$(pyenv init -)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tannerstirrat/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tannerstirrat/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tannerstirrat/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tannerstirrat/google-cloud-sdk/completion.zsh.inc'; fi
