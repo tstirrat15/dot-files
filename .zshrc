@@ -54,7 +54,6 @@ plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd k
 # User configuration
 
 export PATH="/home/tstirrat/.local/bin:/snap/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export PATH=$PATH:$HOME/Library/Python/3.9/bin
 # Add bropages
 export PATH=$PATH:/home/tstirrat/.gem/ruby/2.7.0/bin
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -74,11 +73,9 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 eval "$(thefuck --alias)"
 alias update="sudo apt update && sudo apt full-upgrade"
 
-alias vim="nvim"
-
 # Get virtualenvwrapper working
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source $HOME/Library/Python/3.9/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /home/tstirrat/.local/bin/virtualenvwrapper.sh
 
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
