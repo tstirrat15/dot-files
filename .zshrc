@@ -60,6 +60,9 @@ export PATH=$PATH:/home/tstirrat/.gem/ruby/2.7.0/bin
 
 source $ZSH/oh-my-zsh.sh
 
+# Make homebrew work
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Set up theme stuff
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
