@@ -73,7 +73,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-eval "$(thefuck --alias)"
+eval $(thefuck --alias)
 
 # Get virtualenvwrapper working
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
