@@ -74,7 +74,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 #
 # Example aliases
 eval "$(thefuck --alias)"
-alias update="sudo apt update && sudo apt full-upgrade"
 
 # Get virtualenvwrapper working
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
