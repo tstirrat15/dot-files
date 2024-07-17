@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -49,19 +50,18 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl virtualenv)
+plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl lein rh-tools)
 
 # User configuration
 
 export PATH="/home/tstirrat/.local/bin:/snap/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # Add bropages
-export PATH=$PATH:/home/tstirrat/.gem/ruby/2.7.0/bin
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # Make homebrew work
 eval "$(/opt/homebrew/bin/brew shellenv)"
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+source $ZSH/oh-my-zsh.sh
 
 # Set up theme stuff
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -75,21 +75,42 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Example aliases
 eval $(thefuck --alias)
 
-# Get virtualenvwrapper working
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /home/tstirrat/.local/bin/virtualenvwrapper.sh
-
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
-alias manage.py='docker-compose exec runserver ./manage.py'
-alias djatest='docker-compose exec runserver pytest'
-alias djdr='docker-compose exec runserver pip install -r requirements-dev.txt -r test_requirements.txt'
-alias django='docker-compose exec runserver'
-alias dsql='docker-compose exec postgres psql -U postgres -d omnidev'
-alias djbr='dce django apk --no-cache add python3-dev mariadb-dev build-base gcc git'
 
 # Disable omz alias for this so that we can use tldr
 unalias tldr
 
+## Mac-specific bits
+alias vim="nvim"
+alias vi="nvim"
+eval "$(direnv hook zsh)"
+# Add JAVA_HOME so that clojure is happy
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+
+## Reify-specific aliases
+alias login='eval $(op signin teamreifyhealth)'
+# spql is sponsor, siql is site
+alias spql='psql -h localhost -p 15432 -U postgres -d db'
+alias siql='psql -h localhost -p 15433 -U postgres -d db'
+
+# Add doom bits to path
+export PATH=$PATH:~/.config/emacs/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.bin
 export PATH=$PATH:$(yarn global bin)
 export PATH=$PATH:/home/tstirrat/go/bin
+
+# Get nvm set up
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Virtualenvwrapper stuff
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/Users/tstirrat/.local/pipx/venvs/virtualenvwrapper/bin/python3
+source /Users/tstirrat/.local/bin/virtualenvwrapper_lazy.sh
+
+source /Users/tstirrat/.docker/init-zsh.sh || true # Added by Docker Desktop
+alias tele='telepresence'
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
