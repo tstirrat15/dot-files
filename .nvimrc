@@ -8,8 +8,8 @@ set backspace=indent,eol,start
 " Tell ALE to chill and let coc do its thing
 let g:ale_disable_lsp = 1
 
-" set the runtime path to include Vundle and initialize
-call plug#begin(stdpath('data') . '/plugged') " alternatively, pass a path where Vundle should install plugins
+" set the runtime path to include vim-plug and initialize
+call plug#begin(stdpath('data') . '/plugged') " alternatively, pass a path where vim-plug should install plugins
 
 " My plugins!
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -21,7 +21,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mattn/emmet-vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'chriskempson/base16-vim' " For pretty colors
+Plug 'Soares/base16.nvim'
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim' " Makes vim respect .editorconfig files
 Plug 'vim-scripts/splitjoin.vim' "Moves between single and multiline code quickly
@@ -50,16 +50,8 @@ Plug 'tpope/vim-rhubarb'
 " PHP plugins
 Plug 'nrocco/vim-phplint', { 'for': 'php' }
 
-"JS Plugins
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascriptreact'] }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascriptreact'] }
-
 " pegjs
 Plug 'alunny/pegjs-vim'
-
-" Haskell plugins
-" Plug 'eagletmt/ghcmod-vim'
-" Plug 'eagletmt/neco-ghc'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -81,13 +73,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" Better highlighting. schweet.
-set background=dark
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 " for delimitMate
 let delimitMate_expand_cr = 1
 
@@ -96,12 +81,6 @@ let delimitMate_expand_cr = 1
 
 " Set non-sucky indent settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Set javascript folding and make its indentation less sucky
-autocmd FileType javascript setlocal foldmethod=syntax shiftwidth=2
-
-" Set json folding as well
-autocmd FileType json setlocal foldmethod=syntax
 
 " Set JSX highlighting to be used in js files
 let g:jsx_ext_required = 0
@@ -114,6 +93,9 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+
+" Javascript - don't need jshint
+let g:ale_linters = {'javascript': ['eslint'], 'javascriptreact': ['eslint']}
 
 " Allow for jumping between ALE errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -204,5 +186,12 @@ augroup END
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" Testing new coc-eslint
+set runtimepath^=~/clones/coc-eslint
+
+" Messing with colors
+:set background=dark
+:colorscheme oceanicnext
 
 let g:coc_snippet_next = '<tab>'

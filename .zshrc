@@ -50,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd kubectl lein rh-tools)
+plugins=(git gitfast compleat docker docker-compose lol yarn pip python wd kubectl asdf)
 
 # User configuration
 
@@ -69,6 +69,9 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 #
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
+
+# asdf support
+. "$HOME/.asdf/asdf.sh"
 
 # Disable omz alias for this so that we can use tldr
 unalias tldr
