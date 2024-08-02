@@ -55,11 +55,6 @@ plugins=(git gitfast compleat docker docker-compose aws lol yarn pip python wd k
 # User configuration
 
 export PATH="/home/tstirrat/.local/bin:/snap/bin:/home/tstirrat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# Add bropages
-
-# Make homebrew work
-eval "$(/opt/homebrew/bin/brew shellenv)"
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,27 +67,11 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-eval $(thefuck --alias)
-
 alias emacs="emacs -nw"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 
 # Disable omz alias for this so that we can use tldr
 unalias tldr
-
-## Mac-specific bits
-alias vim="nvim"
-alias vi="nvim"
-eval "$(direnv hook zsh)"
-# Add JAVA_HOME so that clojure is happy
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
-
-## Reify-specific aliases
-alias login='eval $(op signin teamreifyhealth)'
-# spql is sponsor, siql is site
-alias spql='psql -h localhost -p 15432 -U postgres -d db'
-alias siql='psql -h localhost -p 15433 -U postgres -d db'
 
 # Add doom bits to path
 export PATH=$PATH:~/.config/emacs/bin
@@ -110,7 +89,3 @@ export NVM_DIR="$HOME/.nvm"
 export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/Users/tstirrat/.local/pipx/venvs/virtualenvwrapper/bin/python3
 source /Users/tstirrat/.local/bin/virtualenvwrapper_lazy.sh
-
-source /Users/tstirrat/.docker/init-zsh.sh || true # Added by Docker Desktop
-alias tele='telepresence'
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
