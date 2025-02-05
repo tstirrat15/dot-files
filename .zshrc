@@ -68,27 +68,49 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # For a full list of active aliases, run `alias`.
 #
 alias emacs="emacs -nw"
+alias update="sudo apt update && sudo apt upgrade"
 alias gcleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 
 # asdf support
 . "$HOME/.asdf/asdf.sh"
 
-# Disable omz alias for this so that we can use tldr
-unalias tldr
+# Get pbcopy and pbpaste using xclip
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 # Add doom bits to path
 export PATH=$PATH:~/.config/emacs/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.bin
-export PATH=$PATH:$(yarn global bin)
 export PATH=$PATH:/home/tstirrat/go/bin
 
-# Get nvm set up
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# go things
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# dotnet things
+export PATH="$PATH:/home/tstirrat/.dotnet/tools"
 
 # Virtualenvwrapper stuff
 export WORKON_HOME=~/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/Users/tstirrat/.local/pipx/venvs/virtualenvwrapper/bin/python3
-source /Users/tstirrat/.local/bin/virtualenvwrapper_lazy.sh
+source /home/tstirrat/.local/bin/virtualenvwrapper_lazy.sh
+
+# authzed cli
+source <(authzed completion zsh)
+
+# Java things
+# NOTE: this will need to change when java is upgraded
+export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+export GRADLE_USER_HOME=/home/tstirrat/authzed/authzed-java/gradle/wrapper
+
+# Rust things
+source ~/.cargo/env
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# This sets up yarn once nvm has been set up
+export PATH=$PATH:$(yarn global bin)
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
